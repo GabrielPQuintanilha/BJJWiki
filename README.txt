@@ -13,5 +13,6 @@ Aplicação web de técnicas de JiuJitsu com autenticação de usuários, inclui
 - React
 
 # Todo:
-- Envio de tecnicas
-- Painel de Administrador para controle de tecnicas.
+- Sistema de tecnicas por usuarios;
+- Painel de Administrador para controle de tecnicas;
+- Melhorar o design e o visual da interface.
