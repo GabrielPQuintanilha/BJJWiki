@@ -1,4 +1,7 @@
 const userService = require('../services/userService');
+const db = require('../db/client');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 exports.getUser = async (req, res) => {
   try {
@@ -6,7 +9,7 @@ exports.getUser = async (req, res) => {
     res.json(users);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send('Erro ao acessar o banco de dados');
+    res.status(500).json({ message: 'Erro ao acessar o banco de dados' });
   }
 };
 
@@ -21,12 +24,35 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  const { name, password } = req.body;
   try {
-    const result = await userService.loginUser(name, password);
-    res.json({ message: 'Login bem-sucedido', ...result });
+    const { name, password } = req.body;
+    const result = await db.query('SELECT * FROM users WHERE name = $1', [name]);
+    if (result.rows.length === 0) {
+      return res.status(401).json({ message: 'Nome de usuário ou senha incorretos' });
+    }
+
+    const user = result.rows[0];
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(401).json({ message: 'Nome de usuário ou senha incorretos' });
+    }
+
+    const token = jwt.sign(
+      { userId: user.id },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.json({
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        is_admin: user.is_admin,
+      }
+    });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: 'Erro no login' });
   }
 };
 
@@ -39,18 +65,19 @@ exports.getUserProfile = async (req, res) => {
   }
 };
 
-exports.getAllTechniques = async (req, res) => {
+exports.getAllTechniques = async (_req, res) => {
   try {
     const techniques = await userService.getAllTechniques();
     res.json(techniques);
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao buscar posições' });
+    res.status(500).json({ message: 'Erro ao buscar técnicas' });
   }
 };
 
 exports.getConnectionsById = async (req, res) => {
   try {
-    const connections = await userService.getConnectionsById(parseInt(req.params.id));
+    const id = parseInt(req.params.id, 10);
+    const connections = await userService.getConnectionsById(id);
     res.json(connections);
   } catch (error) {
     res.status(500).json({ message: 'Erro ao buscar conexões' });

@@ -38,11 +38,16 @@ exports.loginUser = async (name, password) => {
     { expiresIn: '1h' }
   );
 
-  return { token, name: user.rows[0].name };
+  return { token, user: { 
+    id: user.rows[0].id,
+    name: user.rows[0].name,
+    is_admin: user.rows[0].is_admin,
+    }};
+
 };
 
 exports.getUserProfile = async (userId) => {
-  const result = await db.query('SELECT name FROM users WHERE id = $1', [userId]);
+  const result = await db.query('SELECT name, is_admin FROM users WHERE id = $1', [userId]);
   if (result.rows.length === 0) {
     throw new Error('Usuário não encontrado');
   }
