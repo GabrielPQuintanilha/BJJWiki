@@ -209,7 +209,7 @@ function Dashboard() {
       <h1 className="logo">Brazilian Jiujitsu Wiki</h1>
 
       {userData ? (
-        <div class="div_user">
+        <div className="div_user">
           <p>Usuario: {userData.name}</p>
 
           <button type="button" onClick={handleLogout}>
@@ -259,9 +259,9 @@ function Dashboard() {
           )}
         </div>
       ) : (
-        <div class="div_user">
+        <div className="div_user">
           <h3>Login</h3>
-          <div class="div_login">    {/*o div_login e div_usar tinham tamanhos diferentes. o erro acontecia dentro de div login. Dessa forma com novo erro o div_user aumentava e levava o login (com seus inputs) junto*/}
+          <div className="div_login">    {/*o div_login e div_usar tinham tamanhos diferentes. o erro acontecia dentro de div login. Dessa forma com novo erro o div_user aumentava e levava o login (com seus inputs) junto*/}
             <input
               type="text"
               placeholder="Nome"
@@ -302,7 +302,7 @@ function Dashboard() {
         </select>
 
         {posicaoSelecionada === "enviar" && (
-          <div class="div_posicaoSelecionada">
+          <div className="div_posicaoSelecionada">
             {userData ? (
               <>
                 <h3>Enviar uma Técnica</h3>
