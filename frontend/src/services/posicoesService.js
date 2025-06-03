@@ -1,11 +1,9 @@
-export async function fetchPosicoes() {
-  const response = await fetch('http://localhost:3000/users/posicoes');
-  if (!response.ok) throw new Error('Erro ao carregar posições');
-  return await response.json();
+import * as posicoesApi from '../api/posicoesApi';
+
+export async function getAllPosicoes() {
+  return posicoesApi.fetchPosicoes();
 }
 
-export async function fetchConexoesPorPosicao(posicaoId) {
-  const response = await fetch(`http://localhost:3000/users/conexoes/id/${posicaoId}`);
-  if (!response.ok) throw new Error('Erro ao carregar sequências');
-  return await response.json();
+export async function fetchConexoesByPosicao(posicaoId) {
+  return posicoesApi.fetchConexoes(posicaoId);
 }

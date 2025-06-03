@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import {
   login,
   register,
-  fetchUserData,
-  updatePassword,
+  getUserProfile,
+  changePassword,
   deleteUserAccount,
 } from '../services/authService';
 import {
-  fetchPosicoes,
-  fetchConexoesPorPosicao,
+  getAllPosicoes,
+  fetchConexoesByPosicao,
 } from '../services/posicoesService';
 
 function Dashboard() {
@@ -55,7 +55,7 @@ function Dashboard() {
       const { token } = await login(name, password);
       localStorage.setItem('token', token);
 
-      const user = await fetchUserData(token);
+      const user = await getUserProfile(token);
       setUserData(user);
       setError(null);
     } catch (err) {
@@ -71,7 +71,7 @@ function Dashboard() {
   const atualizarSenha = async () => {
     try {
       const token = localStorage.getItem('token');
-      await updatePassword(senhaAtual, novaSenha, token);
+      await changePassword(senhaAtual, novaSenha, token);
 
       alert('Senha atualizada com sucesso!');
       setSenhaAtual('');
@@ -107,7 +107,7 @@ function Dashboard() {
       return;
     }
 
-    fetchUserData(token)
+    getUserProfile(token)
       .then(setUserData)
       .catch(err => {
         setError(err.message);
@@ -116,7 +116,7 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
-    fetchPosicoes()
+    getAllPosicoes()
       .then(setPosicoes)
       .catch(err => {
         setError('Erro ao carregar posições');
@@ -127,7 +127,7 @@ function Dashboard() {
   useEffect(() => {
     if (posicaoSelecionada) {
       const posicaoId = parseInt(posicaoSelecionada, 10);
-      fetchConexoesPorPosicao(posicaoId)
+      fetchConexoesByPosicao(posicaoId)
         .then(setSequencias)
         .catch(err => {
           setError('Erro ao carregar sequências');
