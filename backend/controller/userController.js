@@ -2,6 +2,7 @@ const userService = require('../services/userService');
 const db = require('../db/client');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const techniqueService = require('../services/techniqueService');
 
 exports.getUser = async (req, res) => {
   try {
@@ -67,19 +68,21 @@ exports.getUserProfile = async (req, res) => {
 
 exports.getAllTechniques = async (_req, res) => {
   try {
-    const techniques = await userService.getAllTechniques();
+    const techniques = await techniqueService.getAllTechniques();
     res.json(techniques);
   } catch (error) {
+    console.error('Erro em getAllTechniques:', error);
     res.status(500).json({ message: 'Erro ao buscar técnicas' });
   }
 };
 
 exports.getConnectionsById = async (req, res) => {
   try {
-    const id = parseInt(req.params.id, 10);
-    const connections = await userService.getConnectionsById(id);
+    const id = req.params.id;
+    const connections = await techniqueService.getConnectionsById(id);
     res.json(connections);
   } catch (error) {
+    console.error('Erro em getConnectionsById:', error);
     res.status(500).json({ message: 'Erro ao buscar conexões' });
   }
 };
