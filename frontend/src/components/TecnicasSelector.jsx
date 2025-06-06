@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import EnviarTecnicaForm from './EnviarTecnicaForm';
+
 function TecnicasSelector({
   userData,
   posicoes,
@@ -5,6 +8,19 @@ function TecnicasSelector({
   setPosicaoSelecionada,
   sequencias,
 }) {
+  const [mensagem, setMensagem] = useState(null);
+  const [erro, setErro] = useState(null);
+
+  const handleSuccess = (msg) => {
+    setMensagem(msg);
+    setErro(null);
+  };
+
+  const handleError = (msg) => {
+    setErro(msg);
+    setMensagem(null);
+  };
+
   return (
     <div style={{ marginTop: '20px' }}>
       <label htmlFor="posicao">Selecione uma Técnica: </label>
@@ -19,9 +35,7 @@ function TecnicasSelector({
             {posicao.nome}
           </option>
         ))}
-        {userData && (
-          <option value="enviar">ENVIAR UMA TÉCNICA</option>
-        )}
+        {userData && <option value="enviar">ENVIAR UMA TÉCNICA</option>}
       </select>
 
       {posicaoSelecionada === 'enviar' && (
@@ -29,8 +43,12 @@ function TecnicasSelector({
           {userData ? (
             <>
               <h3>Enviar uma Técnica</h3>
-              {/* INCLUIR FORMULARIO */}
-              <p>INCLUIR FORMULARIO</p>
+              {mensagem && <p style={{ color: 'green' }}>{mensagem}</p>}
+              {erro && <p style={{ color: 'red' }}>{erro}</p>}
+              <EnviarTecnicaForm
+                onSuccess={handleSuccess}
+                onError={handleError}
+              />
             </>
           ) : (
             <p>Você precisa estar logado para enviar novas técnicas.</p>
@@ -38,6 +56,7 @@ function TecnicasSelector({
         </div>
       )}
 
+      {/* restante do código permanece igual */}
       {posicaoSelecionada && posicaoSelecionada !== 'enviar' && (
         <div className="div_posicaoSelecionada" style={{ marginTop: '10px' }}>
           <h3>Informações:</h3>

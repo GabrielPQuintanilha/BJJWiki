@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import UserPanel from '../components/UserPanel';
 import TecnicasSelector from '../components/TecnicasSelector';
+import { enviarTecnica } from '../services/posicoesService';
 
 import {
   login,
@@ -66,6 +67,16 @@ function Dashboard() {
     }
   };
 
+  async function handleEnviar(dados) {
+    try {
+      const resposta = await enviarTecnica(dados);
+      alert('Técnica enviada com sucesso!');
+      // atualizar UI, limpar formulário, etc.
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   const deleteUser = async () => {
     const confirmDelete = window.confirm(
       'Tem certeza que deseja apagar sua conta? Esta ação é irreversível.'
@@ -109,16 +120,25 @@ function Dashboard() {
   }, []);
 
   // Buscar conexões/progressões quando muda a posição selecionada
-  useEffect(() => {
-    if (posicaoSelecionada) {
-      const posicaoId = parseInt(posicaoSelecionada, 10);
-      fetchConexoesByPosicao(posicaoId)
-        .then(setSequencias)
-        .catch(err => {
-          setError('Erro ao carregar sequências');
-          console.error(err);
-        });
+ useEffect(() => {
+    // Se não selecionou nada ou selecionou "enviar", não faz requisição
+    if (!posicaoSelecionada || posicaoSelecionada === 'enviar') {
+      setSequencias([]); // limpa sequencias
+      return;
     }
+
+    const posicaoId = parseInt(posicaoSelecionada, 10);
+    if (isNaN(posicaoId)) {
+      setError('ID da posição inválido');
+      return;
+    }
+
+    fetchConexoesByPosicao(posicaoId)
+      .then(setSequencias)
+      .catch(err => {
+        setError('Erro ao carregar sequências');
+        console.error(err);
+      });
   }, [posicaoSelecionada]);
 
   return (
