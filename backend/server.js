@@ -16,3 +16,6 @@ app.use('/users', userRoutes);
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
   });  
+
+const posicoesEnviadasRoutes = require('./routes/posicoesEnviadasRoutes');
+app.use('/api/posicoes', posicoesEnviadasRoutes);

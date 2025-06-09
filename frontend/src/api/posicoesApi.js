@@ -1,4 +1,5 @@
 import { apiFetch } from './apiClient';
+const BASE_URL = 'http://localhost:3000';
 
 export function fetchPosicoes() {
   return apiFetch('/users/posicoes');
@@ -9,7 +10,7 @@ export function fetchConexoes(posicaoId) {
 }
 
 export async function postTecnica(dadosTecnica, token) {
-  const response = await fetch('/api/posicoes', {
+  const response = await fetch(`${BASE_URL}/api/posicoes`, {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
