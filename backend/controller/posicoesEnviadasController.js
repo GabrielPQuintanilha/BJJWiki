@@ -2,6 +2,7 @@ const posicoesEnviadasService = require('../services/posicoesEnviadasService');
 
 exports.criar = async (req, res) => {
   try {
+    console.log('Conteúdo de req.body no controller:', req.body);
     const novaPosicao = await posicoesEnviadasService.criar(req.body);
     res.status(201).json(novaPosicao);
   } catch (error) {

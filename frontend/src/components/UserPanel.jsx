@@ -1,4 +1,3 @@
-// UserPanel.jsx
 import { useState, useEffect } from 'react';
 import { listarTecnicasEnviadas } from '../services/posicoesService';
 
@@ -27,11 +26,8 @@ function UserPanel({
       if (!mostrarPainelAdmin) return;
 
         try {
-          // console.log("Iniciando listarTecnicasEnviadas")
           const json = await listarTecnicasEnviadas();
-          console.log("Constante json criada")
           setTecnicasEnviadas(json);
-          console.log("Iniciando setTecnicasEnviadas")
         } catch (err) {
           console.error('Erro ao buscar técnicas enviadas:', err);
         }

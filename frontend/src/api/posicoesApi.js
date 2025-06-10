@@ -1,5 +1,5 @@
+
 import { apiFetch } from './apiClient';
-const BASE_URL = 'http://localhost:3000';
 
 export function fetchPosicoes() {
   return apiFetch('/users/posicoes');
@@ -10,23 +10,20 @@ export function fetchConexoes(posicaoId) {
 }
 
 export async function postTecnica(dadosTecnica, token) {
-  const response = await fetch(`${BASE_URL}/api/posicoes`, {
+  return apiFetch('/api/posicoes', {
     method: 'POST',
-    headers: { 
-      'Content-Type': 'application/json',
+    headers: {
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(dadosTecnica),
+    body: dadosTecnica,
   });
-  
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || 'Erro ao enviar técnica');
-  }
-  
-  return response.json();
 }
 
-export function fetchPosicoesEnviadas() {
-  return apiFetch('/api/posicoes'); // já que seu backend usa /api/posicoes
+export function fetchTecnicasEnviadas(token) { 
+  return apiFetch('/api/posicoes', {
+    method: 'GET', 
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 }
