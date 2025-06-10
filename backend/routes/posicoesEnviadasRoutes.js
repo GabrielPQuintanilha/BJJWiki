@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controller/posicoesEnviadasController');
+const authMiddleware = require('../middleware/authMiddleware'); // importe o middleware
 
-router.post('/', controller.criar);
+router.post('/', authMiddleware, controller.criar);
+router.get('/', authMiddleware, controller.listar);
 
 module.exports = router;

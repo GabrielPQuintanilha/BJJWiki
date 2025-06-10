@@ -1,5 +1,6 @@
 // UserPanel.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { listarTecnicasEnviadas } from '../services/posicoesService';
 
 function UserPanel({
   userData,
@@ -19,6 +20,25 @@ function UserPanel({
   const [novaSenha, setNovaSenha] = useState('');
 
   const [mostrarPainelAdmin, setMostrarPainelAdmin] = useState(false);
+  const [tecnicasEnviadas, setTecnicasEnviadas] = useState([]);
+
+  useEffect(() => {
+    const carregarTecnicas = async () => {
+      if (!mostrarPainelAdmin) return;
+
+        try {
+          // console.log("Iniciando listarTecnicasEnviadas")
+          const json = await listarTecnicasEnviadas();
+          console.log("Constante json criada")
+          setTecnicasEnviadas(json);
+          console.log("Iniciando setTecnicasEnviadas")
+        } catch (err) {
+          console.error('Erro ao buscar técnicas enviadas:', err);
+        }
+    };
+
+    carregarTecnicas();
+  }, [mostrarPainelAdmin]);
 
   const handleLoginClick = async () => {
     setTentouLogar(true);
@@ -88,11 +108,22 @@ function UserPanel({
               </button>
 
               {mostrarPainelAdmin && (
-                <div className="painel-admin">
-                  <h2>Técnicas Enviadas</h2>
-                  <p>Tecnica 1</p>
-                </div>
-              )}
+                  <div className="painel-admin">
+                    <h2>Técnicas Enviadas</h2>
+                    {tecnicasEnviadas.length === 0 ? (
+                      <p>Nenhuma técnica enviada.</p>
+                    ) : (
+                      <ul>
+                        {tecnicasEnviadas.map((tecnica) => (
+                          <li key={tecnica.id}>
+                            <strong>{tecnica.nome}</strong> - {tecnica.finalidade}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
+
             </div>
           )}
         </>

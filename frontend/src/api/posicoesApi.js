@@ -26,3 +26,7 @@ export async function postTecnica(dadosTecnica, token) {
   
   return response.json();
 }
+
+export function fetchPosicoesEnviadas() {
+  return apiFetch('/api/posicoes'); // já que seu backend usa /api/posicoes
+}

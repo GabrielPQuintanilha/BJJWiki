@@ -9,3 +9,8 @@ exports.inserir = async ({ nome, finalidade, posicao }) => {
   const result = await db.query(query, [nome, finalidade, posicao]);
   return result.rows[0];
 };
+
+exports.buscarTodas = async () => {
+  const result = await db.query('SELECT * FROM posicoes_enviadas');
+  return result.rows;
+};
