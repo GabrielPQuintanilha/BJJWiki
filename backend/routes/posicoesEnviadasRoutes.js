@@ -5,5 +5,6 @@ const authMiddleware = require('../middleware/authMiddleware'); // importe o mid
 
 router.post('/', authMiddleware, controller.criar);
 router.get('/', authMiddleware, controller.listar);
+router.delete('/:id', controller.deletarPosicao);
 
 module.exports = router;

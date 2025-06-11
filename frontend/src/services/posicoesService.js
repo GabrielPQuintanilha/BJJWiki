@@ -1,4 +1,6 @@
 import * as posicoesApi from '../api/posicoesApi'; 
+import { deletarPosicao } from '../api/posicoesApi';
+
 
 export async function getAllPosicoes() {
     return posicoesApi.fetchPosicoes();
@@ -23,3 +25,16 @@ export async function listarTecnicasEnviadas() {
     }
     return posicoesApi.fetchTecnicasEnviadas(token); 
 }
+
+export const excluirTecnicaEnviada = async (id, setTecnicasEnviadas) => {
+  const confirmar = window.confirm('Tem certeza que deseja deletar esta técnica?');
+  if (!confirmar) return;
+
+  try {
+    await deletarPosicao(id);
+    setTecnicasEnviadas((prev) => prev.filter((tecnica) => tecnica.id !== id));
+  } catch (error) {
+    console.error('Erro ao deletar técnica enviada:', error);
+    throw error;
+  }
+};

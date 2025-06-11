@@ -108,10 +108,18 @@ button:focus-visible {
 }
 
 .painel-admin{
- background-color: rgb(67, 73, 67);
+  background-color: rgb(67, 73, 67);
   position: fixed;   
-  top: 10%;         
+  top: 50%;         
   left: 50%;         
   transform: translate(-50%, -50%);
-  width: 230px;
+  width: 500px;
+  border-radius: 10px;
+  place-items: center;
+}
+
+.botao-painel-admin{
+  width: 50px;
+  height:30px;
+  padding: 0px;
 }

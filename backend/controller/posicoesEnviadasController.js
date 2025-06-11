@@ -22,3 +22,14 @@ exports.listar = async (req, res) => {
     res.status(500).json({ message: 'Erro ao buscar técnicas' });
   }
 };
+
+exports.deletarPosicao = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await posicoesEnviadasService.deletarPosicao(id);
+    res.status(200).json({ message: 'Posição deletada com sucesso.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao deletar posição.' });
+  }
+};

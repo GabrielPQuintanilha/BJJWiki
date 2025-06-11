@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { listarTecnicasEnviadas } from '../services/posicoesService';
+import { excluirTecnicaEnviada, listarTecnicasEnviadas } from '../services/posicoesService';
 
 function UserPanel({
   userData,
@@ -36,6 +36,10 @@ function UserPanel({
     carregarTecnicas();
   }, [mostrarPainelAdmin]);
 
+  const handleDelete = async (id) => {
+    await excluirTecnicaEnviada(id, setTecnicasEnviadas);
+  };
+
   const handleLoginClick = async () => {
     setTentouLogar(true);
     await onLogin(name, password);
@@ -59,7 +63,7 @@ function UserPanel({
           <p>Usuário: {userData.name}</p>
 
           <button type="button" onClick={onLogout}>Sair</button>
-          <button type="button" onClick={deleteUser}>Deletar a Conta</button>
+          <button type="button" onClick={deleteUser}>Deletar Conta</button>
 
           {!mostrarFormSenha ? (
             <button type="button" onClick={() => setMostrarFormSenha(true)}>
@@ -112,7 +116,13 @@ function UserPanel({
                       <ul>
                         {tecnicasEnviadas.map((tecnica) => (
                           <li key={tecnica.id}>
-                            <strong>{tecnica.nome}</strong> - {tecnica.finalidade}
+                            <strong>{tecnica.nome}</strong> - {tecnica.finalidade} - {tecnica.posicao} 
+                            <button 
+                              onClick={() => handleDelete(tecnica.id)} 
+                              className="botao-painel-admin"
+                            >
+                              Deletar
+                            </button>
                           </li>
                         ))}
                       </ul>

@@ -28,7 +28,6 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
-  // Autenticação e perfil
   const handleRegister = async (name, password) => {
     try {
       await register(name, password);

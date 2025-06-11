@@ -26,7 +26,7 @@ function EnviarTecnicaForm({ onSuccess, onError }) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Nome:</label>
+        <label>Nome: </label>
         <input
           type="text"
           value={nome}
@@ -35,7 +35,7 @@ function EnviarTecnicaForm({ onSuccess, onError }) {
         />
       </div>
       <div>
-        <label>Posição:</label>
+        <label>Posição: </label>
         <input
           type="text"
           value={posicao}
@@ -44,8 +44,9 @@ function EnviarTecnicaForm({ onSuccess, onError }) {
         />
       </div>
       <div>
-        <label>Finalidade:</label>
-        <textarea
+        <label>Finalidade: </label>
+        <input
+          type="text"
           value={finalidade}
           onChange={(e) => setFinalidade(e.target.value)}
           required
