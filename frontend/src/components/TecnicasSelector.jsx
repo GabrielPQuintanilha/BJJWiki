@@ -2,6 +2,7 @@ import { useState } from 'react';
 import EnviarTecnicaForm from './EnviarTecnicaForm';
 
 function TecnicasSelector({
+  userName,
   userData,
   posicoes,
   posicaoSelecionada,
@@ -46,6 +47,7 @@ function TecnicasSelector({
               {mensagem && <p style={{ color: 'green' }}>{mensagem}</p>}
               {erro && <p style={{ color: 'red' }}>{erro}</p>}
               <EnviarTecnicaForm
+                userName={userName}
                 onSuccess={handleSuccess}
                 onError={handleError}
               />

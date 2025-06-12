@@ -13,9 +13,10 @@ export async function postTecnica(dadosTecnica, token) {
   return apiFetch('/api/posicoes', {
     method: 'POST',
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: dadosTecnica,
+    body: JSON.stringify(dadosTecnica), 
   });
 }
 

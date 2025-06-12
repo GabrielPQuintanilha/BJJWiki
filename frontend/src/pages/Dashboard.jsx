@@ -5,6 +5,7 @@ import UserPanel from '../components/UserPanel';
 import TecnicasSelector from '../components/TecnicasSelector';
 import { enviarTecnica } from '../services/posicoesService';
 
+
 import {
   login,
   register,
@@ -156,11 +157,13 @@ function Dashboard() {
 
       <TecnicasSelector
         userData={userData}
+        userName={userData?.nome}
         posicoes={posicoes}
         posicaoSelecionada={posicaoSelecionada}
         setPosicaoSelecionada={setPosicaoSelecionada}
         sequencias={sequencias}
       />
+
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { enviarTecnica } from '../services/posicoesService';
 
-function EnviarTecnicaForm({ onSuccess, onError }) {
+
+function EnviarTecnicaForm({ onSuccess, onError, userName }) {
   const [nome, setNome] = useState('');
   const [posicao, setPosicao] = useState('');
   const [finalidade, setFinalidade] = useState('');
@@ -11,7 +12,7 @@ function EnviarTecnicaForm({ onSuccess, onError }) {
     e.preventDefault();
     setLoading(true);
     try {
-      await enviarTecnica({ nome, posicao, finalidade });
+      await enviarTecnica({ nome, posicao, finalidade, userName });
       setNome('');
       setPosicao('');
       setFinalidade('');

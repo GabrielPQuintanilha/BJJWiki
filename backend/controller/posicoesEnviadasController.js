@@ -3,7 +3,15 @@ const posicoesEnviadasService = require('../services/posicoesEnviadasService');
 exports.criar = async (req, res) => {
   try {
     console.log('Conteúdo de req.body no controller:', req.body);
-    const novaPosicao = await posicoesEnviadasService.criar(req.body);
+    console.log('Usuário autenticado:', req.user);
+
+    // Cria um objeto com os dados do corpo + o nome do usuário
+    const dadosComUsuario = { 
+      ...req.body,
+      nome_usuario: req.user.nome // ou o campo certo do seu token
+    };
+
+    const novaPosicao = await posicoesEnviadasService.criar(dadosComUsuario);
     res.status(201).json(novaPosicao);
   } catch (error) {
     console.error('Erro no controller:', error);
