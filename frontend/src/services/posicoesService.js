@@ -38,3 +38,11 @@ export const excluirTecnicaEnviada = async (id, setTecnicasEnviadas) => {
     throw error;
   }
 };
+
+export async function aprovarTecnica(id) {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('Authentication required: Token not found. Please log in.');
+  }
+  return posicoesApi.postAprovarTecnica(id, token);
+}

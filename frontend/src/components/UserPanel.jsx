@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { excluirTecnicaEnviada, listarTecnicasEnviadas } from '../services/posicoesService';
+import { excluirTecnicaEnviada, listarTecnicasEnviadas, aprovarTecnica } from '../services/posicoesService';
 
 function UserPanel({
   userData,
@@ -35,6 +35,19 @@ function UserPanel({
 
     carregarTecnicas();
   }, [mostrarPainelAdmin]);
+
+  const handleAprovar = async (id) => {
+    const confirmar = window.confirm('Deseja aprovar esta técnica?');
+    if (!confirmar) return;
+
+    try {
+      await aprovarTecnica(id);
+      setTecnicasEnviadas((prev) => prev.filter((tecnica) => tecnica.id !== id));
+    } catch (error) {
+      console.error('Erro ao aprovar técnica:', error);
+      alert('Erro ao aprovar técnica.');
+    }
+  };
 
   const handleDelete = async (id) => {
     await excluirTecnicaEnviada(id, setTecnicasEnviadas);
@@ -122,6 +135,13 @@ function UserPanel({
                               className="botao-painel-admin"
                             >
                               Deletar
+                            </button>
+                            <button 
+                              onClick={() => handleAprovar(tecnica.id)} 
+                              className="botao-painel-admin"
+                              style={{ marginLeft: '8px' }}
+                            >
+                              Aprovar
                             </button>
                           </li>
                         ))}

@@ -41,3 +41,15 @@ exports.deletarPosicao = async (req, res) => {
     res.status(500).json({ message: 'Erro ao deletar posição.' });
   }
 };
+
+exports.aprovarTecnica = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await posicoesEnviadasService.aprovarTecnica(id);
+    res.status(200).json({ message: 'Técnica aprovada com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao aprovar técnica:', error);
+    res.status(500).json({ message: 'Erro ao aprovar técnica' });
+  }
+};

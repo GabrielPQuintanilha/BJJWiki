@@ -19,3 +19,9 @@ exports.deletarPosicao = async (id) => {
   const query = 'DELETE FROM posicoes_enviadas WHERE id = $1';
   await db.query(query, [id]);
 };
+
+exports.buscarPorId = async (id) => {
+  const query = 'SELECT * FROM posicoes_enviadas WHERE id = $1';
+  const result = await db.query(query, [id]);
+  return result.rows[0];
+};

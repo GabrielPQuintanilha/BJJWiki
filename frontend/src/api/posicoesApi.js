@@ -36,3 +36,13 @@ export const deletarPosicao = async (id) => {
   return response;
 };
 
+export async function postAprovarTecnica(id, token) {
+  return await apiFetch(`/api/posicoes/${id}/aprovar`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+}
+
+

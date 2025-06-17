@@ -1,0 +1,97 @@
+# PASSOS:
+
+//
+se eu quiser montar um web app com javascript, html, css, node.js, jwt, express, postgresql utilizando react como frontend,
+//
+
+X Inicialize o projeto Node.js com npm init.
+
+X Configure o backend com Express e conecte ao PostgreSQL.
+
+X Implemente autenticação com JWT no backend.
+
+X Crie rotas públicas e protegidas no backend.
+
+Configure CORS para permitir requisições do React.
+
+X Inicialize o frontend com React usando npx create-react-app.
+
+Implemente páginas de login, registro e dashboard no React.
+
+Faça requisições HTTP (ex: com axios) do React para o backend.
+
+Armazene o token JWT no frontend (ex: localStorage).
+
+Proteja rotas no React verificando o token JWT.
+
+Estilize o frontend com CSS ou bibliotecas (ex: Tailwind).
+
+Implemente logout limpando o token e redirecionando.
+
+Teste toda a comunicação entre frontend e backend.
+
+Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netlify).
+
+# Fluxograma
+
+    graph TD
+    A[Frontend: Usuário Clica no Botão] --> B[React Component: Event Handler];
+    B --> C{Frontend: Envio de Requisição HTTP (fetch/axios)};
+
+    C --> D[Backend: Rota API (Endpoint)];
+    D --> E[Backend: Controller/Service];
+    E --> F[Backend: Lógica de Negócio (Opcional)];
+    F --> G[Backend: Camada de Acesso a Dados (DAO/Repository)];
+    G --> H[Banco de Dados: Execução da Query];
+    H --> I[Banco de Dados: Retorno dos Dados];
+
+    I --> J[Backend: Camada de Acesso a Dados (DAO/Repository)];
+    J --> K[Backend: Controller/Service];
+    K --> L[Backend: Resposta HTTP (JSON)];
+
+    L --> M[Frontend: Recebimento da Resposta HTTP];
+    M --> N[React Component: Atualização do Estado/UI];
+    N --> O[Frontend: Exibição dos Dados ao Usuário];
+
+# Folder Organization:
+    backend/
+    ├── controller/
+    │   ├── posicoesEnviadasController.js
+    │   └── userController.js
+    ├── db/
+    │   └── client.js
+    ├── middleware/
+    │   └── authMiddleware.js
+    ├── repositories/
+    │   ├── posicoesEnviadasRepository.js
+    │   ├── techniqueRepository.js
+    │   └── userRepository.js
+    ├── routes/
+    │   ├── posicoesEnviadasRoutes.js
+    │   └── userRoutes.js
+    ├── services/
+    │   ├── posicoesEnviadasService.js
+    │   ├── techniqueService.js
+    │   └── userService.js
+    └── server.js
+
+    frontend/
+    └── src/
+        ├── api/
+        │   ├── apiClient.js
+        │   ├── authApi.js
+        │   └── posicoesApi.js
+        ├── components/
+        │   ├── EnviarTecnicaForm.jsx
+        │   ├── TecnicasSelector.jsx
+        │   └── UserPanel.jsx
+        ├── pages/
+        │   └── Dashboard.jsx
+        ├── services/
+        │   ├── authService.js
+        │   └── posicoesService.js
+        ├── App.css
+        ├── app.jsx
+        ├── index.css
+        ├── main.jsx
+        └── index.html
