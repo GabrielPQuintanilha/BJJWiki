@@ -7,7 +7,7 @@ exports.findAll = async () => {
 
 exports.findByName = async (name) => {
   const result = await db.query('SELECT * FROM users WHERE name = $1', [name]);
-  return result.rows[0]; // retorna direto o usuário ou undefined
+  return result.rows[0]; 
 };
 
 exports.findById = async (id) => {

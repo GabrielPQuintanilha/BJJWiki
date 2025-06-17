@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controller/posicoesEnviadasController');
-const authMiddleware = require('../middleware/authMiddleware'); // importe o middleware
+const verificarToken = require('../middleware/authMiddleware'); 
 
-router.post('/', authMiddleware, controller.criar);
-router.get('/', authMiddleware, controller.listar);
+router.post('/', verificarToken, controller.criar);
+router.get('/', verificarToken, controller.listar);
 router.delete('/:id', controller.deletarPosicao);
-router.post('/:id/aprovar', authMiddleware, controller.aprovarTecnica);
+router.post('/:id/aprovar', verificarToken, controller.aprovarTecnica);
 
 module.exports = router;

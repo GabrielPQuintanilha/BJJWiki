@@ -58,7 +58,6 @@ function TecnicasSelector({
         </div>
       )}
 
-      {/* restante do código permanece igual */}
       {posicaoSelecionada && posicaoSelecionada !== 'enviar' && (
         <div className="div_posicaoSelecionada" style={{ marginTop: '10px' }}>
           <h3>Informações:</h3>

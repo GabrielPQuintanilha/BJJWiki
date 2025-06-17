@@ -71,7 +71,6 @@ function Dashboard() {
     try {
       const resposta = await enviarTecnica(dados);
       alert('Técnica enviada com sucesso!');
-      // atualizar UI, limpar formulário, etc.
     } catch (error) {
       alert(error.message);
     }
@@ -94,7 +93,6 @@ function Dashboard() {
     }
   };
 
-  // Buscar perfil ao montar
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -109,7 +107,6 @@ function Dashboard() {
       });
   }, []);
 
-  // Buscar posições ao montar
   useEffect(() => {
     getAllPosicoes()
       .then(setPosicoes)
@@ -121,9 +118,8 @@ function Dashboard() {
 
   // Buscar conexões/progressões quando muda a posição selecionada
  useEffect(() => {
-    // Se não selecionou nada ou selecionou "enviar", não faz requisição
     if (!posicaoSelecionada || posicaoSelecionada === 'enviar') {
-      setSequencias([]); // limpa sequencias
+      setSequencias([]); 
       return;
     }
 
