@@ -9,7 +9,7 @@ function AtualizarSenhaForm({
   setMostrarFormSenha,
 }) {
   return (
-    <div style={{ marginTop: '10px' }}>
+    <div className="divAtualizarSenhaForm">
       <input
         type="password"
         placeholder="Senha atual"
@@ -25,12 +25,11 @@ function AtualizarSenhaForm({
         style={{ display: 'block', marginBottom: '10px' }}
       />
       <button type="button" onClick={handleAtualizarSenha}>
-        Confirmar Atualização
+        Confirmar
       </button>
       <button
         type="button"
         onClick={() => setMostrarFormSenha(false)}
-        style={{ marginLeft: '10px' }}
       >
         Cancelar
       </button>

@@ -45,6 +45,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  
 }
 button:hover {
   border-color: #646cff;
@@ -87,6 +88,9 @@ button:focus-visible {
   top: 10px;
   left: 20px;
   width: 230px;
+  /*background-color: green; */
+  text-align: center;
+  place-items: center;
 }
 
 .div_login{
@@ -124,3 +128,12 @@ button:focus-visible {
   padding: 0px;
   margin-left: 12px;
 }
+
+.divAtualizarSenhaForm{
+  padding:5px;
+  text-align: center;
+  place-items: center;
+  background-color: #414040; 
+  border-radius: 10px;
+}
+
