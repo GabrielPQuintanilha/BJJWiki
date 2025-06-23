@@ -15,7 +15,7 @@ exports.buscarTodas = async () => {
   return result.rows;
 };
 
-exports.deletarPosicao = async (id) => {
+exports.deletarPosicaoEnviada = async (id) => {
   const query = 'DELETE FROM posicoes_enviadas WHERE id = $1';
   await db.query(query, [id]);
 };

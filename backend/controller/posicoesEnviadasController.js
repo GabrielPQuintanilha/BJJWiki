@@ -31,10 +31,10 @@ exports.listar = async (req, res) => {
   }
 };
 
-exports.deletarPosicao = async (req, res) => {
+exports.deletarPosicaoEnviada = async (req, res) => {
   try {
     const id = req.params.id;
-    await posicoesEnviadasService.deletarPosicao(id);
+    await posicoesEnviadasService.deletarPosicaoEnviada(id);
     res.status(200).json({ message: 'Posição deletada com sucesso.' });
   } catch (error) {
     console.error(error);

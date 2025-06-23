@@ -5,8 +5,8 @@ exports.criar = async (dados) => {
   return await posicoesEnviadasRepository.inserir(dados);
 };
 
-exports.deletarPosicao = async (id) => {
-  return await posicoesEnviadasRepository.deletarPosicao(id);
+exports.deletarPosicaoEnviada = async (id) => {
+  return await posicoesEnviadasRepository.deletarPosicaoEnviada(id);
 };
 
 exports.aprovarTecnica = async (id) => {
@@ -28,5 +28,5 @@ exports.aprovarTecnica = async (id) => {
     //conexoes: tecnica.conexoes || null,
   });
 
-  await posicoesEnviadasRepository.deletarPosicao(id);
+  await posicoesEnviadasRepository.deletarPosicaoEnviada(id);
 };

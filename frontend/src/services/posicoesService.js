@@ -1,5 +1,5 @@
 import * as posicoesApi from '../api/posicoesApi'; 
-import { deletarPosicao } from '../api/posicoesApi';
+import { deletarPosicaoEnviada } from '../api/posicoesApi';
 
 
 export async function getAllPosicoes() {
@@ -31,7 +31,7 @@ export const excluirTecnicaEnviada = async (id, setTecnicasEnviadas) => {
   if (!confirmar) return;
 
   try {
-    await deletarPosicao(id);
+    await deletarPosicaoEnviada(id);
     setTecnicasEnviadas((prev) => prev.filter((tecnica) => tecnica.id !== id));
   } catch (error) {
     console.error('Erro ao deletar técnica enviada:', error);

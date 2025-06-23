@@ -29,7 +29,7 @@ export function fetchTecnicasEnviadas(token) {
   });
 }
 
-export const deletarPosicao = async (id) => {
+export const deletarPosicaoEnviada = async (id) => {
   const response = await apiFetch(`/api/posicoes/${id}`, {
     method: 'DELETE',
   });
