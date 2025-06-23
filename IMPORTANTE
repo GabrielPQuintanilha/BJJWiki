@@ -56,6 +56,7 @@ Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netli
 
     backend/
     ├── controller/
+    │   ├── posicoesController.js
     │   ├── posicoesEnviadasController.js
     │   └── userController.js
     ├── db/
@@ -68,6 +69,7 @@ Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netli
     │   └── userRepository.js
     ├── routes/
     │   ├── posicoesEnviadasRoutes.js
+    │   ├── posicoesRoutes.js
     │   └── userRoutes.js
     ├── services/
     │   ├── posicoesEnviadasService.js
@@ -85,6 +87,7 @@ Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netli
         │   ├── AcoesUsuario.jsx
         │   ├── AtualizarSenhaForm.jsx
         │   ├── EnviarTecnicaForm.jsx
+        │   ├── DeleteTecnicaButton.jsx
         │   ├── LoginRegisterForm.jsx
         │   ├── PainelAdmin.jsx
         │   ├── TecnicasSelector.jsx

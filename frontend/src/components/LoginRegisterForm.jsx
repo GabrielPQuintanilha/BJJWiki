@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { validarNomeUsuario, validarSenha } from '../shared/userValidation';
+
 
 export default function LoginRegisterForm({ onLogin, onRegister, error }) {
   const [name, setName] = useState('');
@@ -11,6 +13,14 @@ export default function LoginRegisterForm({ onLogin, onRegister, error }) {
   };
 
   const handleRegisterClick = async () => {
+    if (!validarNomeUsuario(name)) {
+      alert('Nome de usuário inválido: deve ter de 5 a 20 caracteres, sem espaços.');
+      return;
+    }
+    if (!validarSenha(password)) {
+      alert('Senha inválida: mínimo 8 caracteres e sem espaços.');
+      return;
+    }
     await onRegister(name, password);
   };
 
