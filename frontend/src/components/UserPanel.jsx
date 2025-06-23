@@ -18,6 +18,7 @@ function UserPanel({
   onRegister,
   atualizarSenha,
   deleteUser,
+   carregarPosicoes,
 }) {
   const [mostrarFormSenha, setMostrarFormSenha] = useState(false);
   const [senhaAtual, setSenhaAtual] = useState('');
@@ -33,6 +34,9 @@ function UserPanel({
     try {
       await aprovarTecnica(id);
       setTecnicasEnviadas((prev) => prev.filter((tecnica) => tecnica.id !== id));
+      if (carregarPosicoes) {
+        carregarPosicoes();  // Recarrega a lista de técnicas no Dashboard
+      }
     } catch (error) {
       console.error('Erro ao aprovar técnica:', error);
       alert('Erro ao aprovar técnica.');

@@ -96,6 +96,16 @@ function Dashboard() {
     }
   };
 
+  // Função para recarregar a lista de posições
+  const carregarPosicoes = () => {
+    getAllPosicoes()
+      .then(setPosicoes)
+      .catch(err => {
+        setError('Erro ao carregar posições');
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -111,12 +121,7 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
-    getAllPosicoes()
-      .then(setPosicoes)
-      .catch(err => {
-        setError('Erro ao carregar posições');
-        console.error(err);
-      });
+    carregarPosicoes();
   }, []);
 
   // Buscar conexões/progressões quando muda a posição selecionada
@@ -152,6 +157,7 @@ function Dashboard() {
         onRegister={handleRegister}
         atualizarSenha={atualizarSenha}
         deleteUser={deleteUser}
+        carregarPosicoes={carregarPosicoes} 
       />
 
       <TecnicasSelector
