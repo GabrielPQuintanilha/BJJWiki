@@ -7,3 +7,7 @@ exports.getAllTechniques = async () => {
 exports.getConnectionsById = async (id) => {
   return await techniqueRepository.findConnectionsByTechniqueId(id);
 };
+
+exports.deletarTecnica = async (id) => {
+  return await techniqueRepository.deletarTecnica(id);
+};

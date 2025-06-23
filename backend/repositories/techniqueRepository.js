@@ -38,3 +38,8 @@ exports.inserir = async ({
   const result = await db.query(query, values);
   return result.rows[0];
 };
+
+exports.deletarTecnica = async (id) => {
+  const query = 'DELETE FROM posicoes WHERE id = $1';
+  await db.query(query, [id]);
+};

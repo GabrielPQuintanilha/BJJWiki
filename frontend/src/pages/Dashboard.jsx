@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import UserPanel from '../components/UserPanel';
 import TecnicasSelector from '../components/TecnicasSelector';
 import { enviarTecnica } from '../services/posicoesService';
+import * as posicoesService from '../services/posicoesService';
 
 
 import {
@@ -75,6 +76,17 @@ function Dashboard() {
       alert(error.message);
     }
   }
+
+  const handleDeleteTecnica = async (id) => {
+    try {
+      await posicoesService.deletarTecnica(id);
+      setPosicoes((prev) => prev.filter((p) => p.id !== id));
+      setPosicaoSelecionada(''); // opcional, se quiser "limpar" a seleção
+    } catch (err) {
+      alert('Erro ao deletar técnica');
+      console.error(err);
+    }
+  };
 
   const deleteUser = async () => {
     const confirmDelete = window.confirm(
@@ -158,6 +170,7 @@ function Dashboard() {
         posicaoSelecionada={posicaoSelecionada}
         setPosicaoSelecionada={setPosicaoSelecionada}
         sequencias={sequencias}
+        onDelete={handleDeleteTecnica}
       />
 
     </div>

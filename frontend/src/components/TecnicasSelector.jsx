@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import EnviarTecnicaForm from './EnviarTecnicaForm';
+import DeleteTecnicaButton from './DeleteTecnicaButton';
 
 function TecnicasSelector({
   userName,
@@ -8,6 +9,7 @@ function TecnicasSelector({
   posicaoSelecionada,
   setPosicaoSelecionada,
   sequencias,
+  onDelete,
 }) {
   const [mensagem, setMensagem] = useState(null);
   const [erro, setErro] = useState(null);
@@ -68,6 +70,12 @@ function TecnicasSelector({
                 <p><strong>Nome:</strong> {posicao.nome}</p>
                 <p><strong>Posição:</strong> {posicao.posicao}</p>
                 <p><strong>Finalidade:</strong> {posicao.finalidade}</p>
+
+                <DeleteTecnicaButton
+                  tecnicaId={posicao.id}
+                  onDelete={onDelete}
+                />
+
               </div>
             ))}
 

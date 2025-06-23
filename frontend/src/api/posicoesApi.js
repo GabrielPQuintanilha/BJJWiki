@@ -45,4 +45,11 @@ export async function postAprovarTecnica(id, token) {
   });
 }
 
-
+export const deletarTecnica = async (id, token) => {
+  return apiFetch(`/api/tecnicas/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

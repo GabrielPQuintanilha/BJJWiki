@@ -1,5 +1,6 @@
 import * as posicoesApi from '../api/posicoesApi'; 
 import { deletarPosicaoEnviada } from '../api/posicoesApi';
+import { deletarTecnica as deletarTecnicaApi } from '../api/posicoesApi';
 
 
 export async function getAllPosicoes() {
@@ -46,3 +47,13 @@ export async function aprovarTecnica(id) {
   }
   return posicoesApi.postAprovarTecnica(id, token);
 }
+
+export const deletarTecnica = async (id) => {
+  try {
+    const token = localStorage.getItem('token');
+    await deletarTecnicaApi(id, token);
+  } catch (error) {
+    console.error('Erro ao deletar técnica no service:', error);
+    throw new Error('Erro ao deletar técnica');
+  }
+};
