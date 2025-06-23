@@ -7,7 +7,7 @@ const DeleteTecnicaButton = ({ tecnicaId, onDelete }) => {
   };
 
   return (
-    <button onClick={handleClick} className="btn-excluir">
+    <button onClick={handleClick} className="btn-excluir-tecnica">
       Excluir
     </button>
   );
