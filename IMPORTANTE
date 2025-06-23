@@ -32,8 +32,7 @@ Teste toda a comunicação entre frontend e backend.
 
 Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netlify).
 
-# Fluxograma
-
+# Fluxograma:
     graph TD
     A[Frontend: Usuário Clica no Botão] --> B[React Component: Event Handler];
     B --> C{Frontend: Envio de Requisição HTTP (fetch/axios)};
@@ -51,7 +50,7 @@ Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netli
 
     L --> M[Frontend: Recebimento da Resposta HTTP];
     M --> N[React Component: Atualização do Estado/UI];
-    N --> O[Frontend: Exibição dos Dados ao Usuário];
+    N --> O[Frontend: Exibição dos Dados ao Usuário]
 
 # Folder Organization:
     backend/
@@ -82,9 +81,16 @@ Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netli
         │   ├── authApi.js
         │   └── posicoesApi.js
         ├── components/
+        │   ├── AcoesUsuario.jsx
+        │   ├── AtualizarSenhaForm.jsx
         │   ├── EnviarTecnicaForm.jsx
+        │   ├── LoginRegisterForm.jsx
+        │   ├── PainelAdmin.jsx
         │   ├── TecnicasSelector.jsx
-        │   └── UserPanel.jsx
+        │   ├── UserPanel.jsx
+        │   └── UsuarioLogado.jsx
+        ├── hooks/
+        │   └── UsePainelAdmin.jsx
         ├── pages/
         │   └── Dashboard.jsx
         ├── services/
