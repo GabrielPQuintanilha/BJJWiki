@@ -28,7 +28,6 @@ function Dashboard() {
   const [posicaoSelecionada, setPosicaoSelecionada] = useState('');
   const [sequencias, setSequencias] = useState([]);
 
-  const navigate = useNavigate();
 
   const handleRegister = async (name, password) => {
     try {
@@ -68,14 +67,6 @@ function Dashboard() {
     }
   };
 
-  async function handleEnviar(dados) {
-    try {
-      const resposta = await enviarTecnica(dados);
-      alert('Técnica enviada com sucesso!');
-    } catch (error) {
-      alert(error.message);
-    }
-  }
 
   const handleDeleteTecnica = async (id) => {
     try {
