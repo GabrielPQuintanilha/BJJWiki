@@ -75,7 +75,11 @@ function UserPanel({
           handleAprovar={handleAprovar}
         />
       ) : (
-        <LoginRegisterForm onLogin={onLogin} onRegister={onRegister} error={error} />
+        <LoginRegisterForm 
+          onLogin={onLogin} 
+          onRegister={onRegister} 
+          error={error} 
+        />
       )}
     </div>
   );

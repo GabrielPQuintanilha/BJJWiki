@@ -71,10 +71,12 @@ function TecnicasSelector({
                 <p><strong>Posição:</strong> {posicao.posicao}</p>
                 <p><strong>Finalidade:</strong> {posicao.finalidade}</p>
 
-                <DeleteTecnicaButton
-                  tecnicaId={posicao.id}
-                  onDelete={onDelete}
-                />
+                {userData?.is_admin && (
+                  <DeleteTecnicaButton
+                    tecnicaId={posicao.id}
+                    onDelete={onDelete}
+                  />
+                )}
 
               </div>
             ))}

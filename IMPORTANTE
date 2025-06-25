@@ -115,3 +115,30 @@ Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netli
     refactor:	Refatoração de código (sem mudar comportamento)
     test:	Adição ou modificação de testes
     chore:	Tarefas de manutenção (build, deps etc.)
+
+# Resumo Entrevista:
+
+    Desenvolvi uma aplicação fullstack com Node.js, PostgreSQL e React, utilizando uma arquitetura em camadas no backend (com controllers, services e repositórios) e organização modular no frontend com React.
+    O projeto simula uma base de dados interativa para técnicas de Jiu-Jitsu, permitindo cadastro, visualização e gerenciamento de movimentos, com autenticação de usuários, painel administrativo e sistema de validação.
+    A comunicação entre frontend e backend é feita via APIs RESTful, com controle de acesso através de JWT e middleware de autenticação.
+
+    -mais técnico (para entrevistas técnicas ou áreas mais voltadas ao desenvolvimento):
+
+        A estrutura do backend segue princípios de Clean Code e responsabilidade única, com camadas bem definidas para controller, service e repository. No frontend, utilizei React com organização por componentes reutilizáveis, separação da lógica de negócio em serviços e hooks customizados, e conexão com backend via Axios encapsulado.
+
+    -Ferramentas e boas praticas:
+    Node.js + Express no backend
+
+        PostgreSQL como banco de dados relacional
+
+        JWT para autenticação
+
+        React.js com componentes reutilizáveis
+
+        Axios com apiClient centralizado
+
+        Hooks personalizados
+
+        Separação de responsabilidades (SoC) tanto no frontend quanto no backend
+
+        Padrões REST para comunicação entre frontend e backend
