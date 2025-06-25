@@ -30,7 +30,7 @@ export default function LoginRegisterForm({ onLogin, onRegister, error }) {
       <div className="div_login">
         <input
           type="text"
-          placeholder="Nome"
+          placeholder="Usuário"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -42,7 +42,7 @@ export default function LoginRegisterForm({ onLogin, onRegister, error }) {
         />
       </div>
       <div>
-        <button onClick={handleLoginClick}>Entrar</button>
+        <button onClick={handleLoginClick}>Entrar</button> 
         <button onClick={handleRegisterClick}>Criar Conta</button>
       </div>
       {tentouLogar && error && <p>{error}</p>}

@@ -9,7 +9,7 @@ function AcoesUsuario({
 }) {
   return (
     <>
-      <p>Usuário: {nomeUsuario}</p>
+      <p>Olá, {nomeUsuario}</p>
 
       <button type="button" onClick={onLogout}>Sair</button>
       <button type="button" onClick={deleteUser}>Deletar Conta</button>
