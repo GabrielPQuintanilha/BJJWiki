@@ -121,6 +121,7 @@ button:focus-visible {
   width: 500px;
   border-radius: 10px;
   place-items: center;
+  z-index: 1000;
 }
 
 .botao-painel-admin{
