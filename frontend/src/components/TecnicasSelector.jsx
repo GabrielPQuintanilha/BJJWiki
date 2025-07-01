@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EnviarTecnicaForm from './EnviarTecnicaForm';
 import DeleteTecnicaButton from './DeleteTecnicaButton';
 
@@ -23,6 +23,11 @@ function TecnicasSelector({
     setErro(msg);
     setMensagem(null);
   };
+
+  useEffect(() => {
+    setMensagem(null);
+    setErro(null);
+  }, [posicaoSelecionada]);
 
   return (
     <div style={{ marginTop: '20px' }}>
