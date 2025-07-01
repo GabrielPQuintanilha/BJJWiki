@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userRepository = require('../repositories/userRepository');
+const { validarNomeUsuario, validarSenha } = require('../shared/userValidation');
+
 
 
 exports.getAllUsers = async () => {
@@ -8,8 +10,18 @@ exports.getAllUsers = async () => {
 };
 
 exports.createUser = async (name, password) => {
+  if (!validarNomeUsuario(name)) {
+    throw new Error('Nome de usuário inválido: deve ter de 5 a 20 caracteres, sem espaços.');
+  }
+
+  if (!validarSenha(password)) {
+    throw new Error('Senha inválida: mínimo 8 caracteres e sem espaços.');
+  }
+
   const existingUser = await userRepository.findByName(name);
-  if (existingUser) throw new Error('O nome de usuário já está em uso.');
+  if (existingUser) {
+    throw new Error('O nome de usuário já está em uso.');
+  }
 
   const hashedPassword = await bcrypt.hash(password, 10);
   return await userRepository.create(name, hashedPassword);

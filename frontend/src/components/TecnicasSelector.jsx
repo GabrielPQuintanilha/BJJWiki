@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EnviarTecnicaForm from './EnviarTecnicaForm';
+import DeleteTecnicaButton from './DeleteTecnicaButton';
 
 function TecnicasSelector({
+  userName,
   userData,
   posicoes,
   posicaoSelecionada,
   setPosicaoSelecionada,
   sequencias,
+  onDelete,
 }) {
   const [mensagem, setMensagem] = useState(null);
   const [erro, setErro] = useState(null);
@@ -20,6 +23,11 @@ function TecnicasSelector({
     setErro(msg);
     setMensagem(null);
   };
+
+  useEffect(() => {
+    setMensagem(null);
+    setErro(null);
+  }, [posicaoSelecionada]);
 
   return (
     <div style={{ marginTop: '20px' }}>
@@ -46,6 +54,7 @@ function TecnicasSelector({
               {mensagem && <p style={{ color: 'green' }}>{mensagem}</p>}
               {erro && <p style={{ color: 'red' }}>{erro}</p>}
               <EnviarTecnicaForm
+                userName={userName}
                 onSuccess={handleSuccess}
                 onError={handleError}
               />
@@ -56,7 +65,6 @@ function TecnicasSelector({
         </div>
       )}
 
-      {/* restante do código permanece igual */}
       {posicaoSelecionada && posicaoSelecionada !== 'enviar' && (
         <div className="div_posicaoSelecionada" style={{ marginTop: '10px' }}>
           <h3>Informações:</h3>
@@ -67,6 +75,14 @@ function TecnicasSelector({
                 <p><strong>Nome:</strong> {posicao.nome}</p>
                 <p><strong>Posição:</strong> {posicao.posicao}</p>
                 <p><strong>Finalidade:</strong> {posicao.finalidade}</p>
+
+                {userData?.is_admin && (
+                  <DeleteTecnicaButton
+                    tecnicaId={posicao.id}
+                    onDelete={onDelete}
+                  />
+                )}
+
               </div>
             ))}
 

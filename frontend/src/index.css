@@ -45,6 +45,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  
 }
 button:hover {
   border-color: #646cff;
@@ -73,6 +74,7 @@ button:focus-visible {
   padding:5px;
   padding-top: 0px;
   border-radius: 10px;
+  position: relative;
 }
 
 .div_progressao{
@@ -87,6 +89,9 @@ button:focus-visible {
   top: 10px;
   left: 20px;
   width: 230px;
+  /*background-color: green; */
+  text-align: center;
+  place-items: center;
 }
 
 .div_login{
@@ -108,10 +113,35 @@ button:focus-visible {
 }
 
 .painel-admin{
- background-color: rgb(67, 73, 67);
+  background-color: rgb(67, 73, 67);
   position: fixed;   
-  top: 10%;         
+  top: 50%;         
   left: 50%;         
   transform: translate(-50%, -50%);
-  width: 230px;
+  width: 500px;
+  border-radius: 10px;
+  place-items: center;
+  z-index: 1000;
+}
+
+.botao-painel-admin{
+  width: 50px;
+  height:30px;
+  padding: 0px;
+  margin-left: 12px;
+}
+
+.divAtualizarSenhaForm{
+  padding:5px;
+  text-align: center;
+  place-items: center;
+  background-color: #414040; 
+  border-radius: 10px;
+}
+
+.btn-excluir-tecnica{
+  background-color:#992525;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }

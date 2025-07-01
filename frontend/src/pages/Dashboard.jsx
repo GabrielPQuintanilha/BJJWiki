@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import UserPanel from '../components/UserPanel';
 import TecnicasSelector from '../components/TecnicasSelector';
 import { enviarTecnica } from '../services/posicoesService';
+import * as posicoesService from '../services/posicoesService';
+
 
 import {
   login,
@@ -26,9 +28,7 @@ function Dashboard() {
   const [posicaoSelecionada, setPosicaoSelecionada] = useState('');
   const [sequencias, setSequencias] = useState([]);
 
-  const navigate = useNavigate();
 
-  // Autenticação e perfil
   const handleRegister = async (name, password) => {
     try {
       await register(name, password);
@@ -67,15 +67,17 @@ function Dashboard() {
     }
   };
 
-  async function handleEnviar(dados) {
+
+  const handleDeleteTecnica = async (id) => {
     try {
-      const resposta = await enviarTecnica(dados);
-      alert('Técnica enviada com sucesso!');
-      // atualizar UI, limpar formulário, etc.
-    } catch (error) {
-      alert(error.message);
+      await posicoesService.deletarTecnica(id);
+      setPosicoes((prev) => prev.filter((p) => p.id !== id));
+      setPosicaoSelecionada(''); // opcional, se quiser "limpar" a seleção
+    } catch (err) {
+      alert('Erro ao deletar técnica');
+      console.error(err);
     }
-  }
+  };
 
   const deleteUser = async () => {
     const confirmDelete = window.confirm(
@@ -94,7 +96,16 @@ function Dashboard() {
     }
   };
 
-  // Buscar perfil ao montar
+  // Função para recarregar a lista de posições
+  const carregarPosicoes = () => {
+    getAllPosicoes()
+      .then(setPosicoes)
+      .catch(err => {
+        setError('Erro ao carregar posições');
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -109,21 +120,14 @@ function Dashboard() {
       });
   }, []);
 
-  // Buscar posições ao montar
   useEffect(() => {
-    getAllPosicoes()
-      .then(setPosicoes)
-      .catch(err => {
-        setError('Erro ao carregar posições');
-        console.error(err);
-      });
+    carregarPosicoes();
   }, []);
 
   // Buscar conexões/progressões quando muda a posição selecionada
  useEffect(() => {
-    // Se não selecionou nada ou selecionou "enviar", não faz requisição
     if (!posicaoSelecionada || posicaoSelecionada === 'enviar') {
-      setSequencias([]); // limpa sequencias
+      setSequencias([]); 
       return;
     }
 
@@ -153,15 +157,19 @@ function Dashboard() {
         onRegister={handleRegister}
         atualizarSenha={atualizarSenha}
         deleteUser={deleteUser}
+        carregarPosicoes={carregarPosicoes} 
       />
 
       <TecnicasSelector
         userData={userData}
+        userName={userData?.nome}
         posicoes={posicoes}
         posicaoSelecionada={posicaoSelecionada}
         setPosicaoSelecionada={setPosicaoSelecionada}
         sequencias={sequencias}
+        onDelete={handleDeleteTecnica}
       />
+
     </div>
   );
 }

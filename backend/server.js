@@ -12,7 +12,14 @@ app.use(express.json());
 // transforma "/users" em um prefixo para usar por exemplo GET /users (executa o GET do userController)
 app.use('/users', userRoutes);
 
+const posicoesEnviadasRoutes = require('./routes/posicoesEnviadasRoutes');
+app.use('/api/posicoes', posicoesEnviadasRoutes);
+
+const posicoesRoutes = require('./routes/posicoesRoutes');
+app.use('/api/tecnicas', posicoesRoutes);
+
 // Inicia o servidor
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
   });  
+
