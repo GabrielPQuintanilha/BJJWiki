@@ -68,21 +68,68 @@ button:focus-visible {
   }
 }
 
+/* Box das tecnicas */
 
-.div_posicaoSelecionada{
+.div_posicaoSelecionada {
   background-color: #414040;
-  padding:5px;
-  padding-top: 0px;
+  padding: 16px 20px 20px 20px; /* mais espaço para o botão */
   border-radius: 10px;
+  position: relative;
+  color: white; /* para o texto ficar visível */
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.div_posicaoSelecionada > div:first-child {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
   position: relative;
 }
 
-.div_progressao{
+.gif-container {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.gif-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.btn-excluir-tecnica {
+  background-color: #992525;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.div_progressao {
   display: flex;
   gap: 10px;
-  flex-Wrap: wrap;
-  
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
+
+.container-texto-gif {
+  display: flex;
+  justify-content: space-between; /* separa o texto do gif */
+  align-items: flex-start; /* alinha no topo */
+  gap: 20px;
+}
+
+.info-texto {
+  flex: 1; /* ocupa o máximo espaço possível */
+  color: white; /* para o texto ficar visível */
+}
+
+/* fim do box das tecnicas */
 
 .div_user{
   position: absolute;
@@ -139,9 +186,6 @@ button:focus-visible {
   border-radius: 10px;
 }
 
-.btn-excluir-tecnica{
-  background-color:#992525;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
+
+
+

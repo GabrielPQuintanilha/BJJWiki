@@ -66,23 +66,34 @@ function TecnicasSelector({
       )}
 
       {posicaoSelecionada && posicaoSelecionada !== 'enviar' && (
-        <div className="div_posicaoSelecionada" style={{ marginTop: '10px' }}>
+        <div className="div_posicaoSelecionada">
+          {userData?.is_admin && (
+            <DeleteTecnicaButton
+              className="btn-excluir-tecnica"
+              tecnicaId={posicao.id}
+              onDelete={onDelete}
+            />
+          )}
+
           <h3>Informações:</h3>
+
           {posicoes
             .filter((posicao) => posicao.id === parseInt(posicaoSelecionada))
             .map((posicao) => (
-              <div key={posicao.nome}>
-                <p><strong>Nome:</strong> {posicao.nome}</p>
-                <p><strong>Posição:</strong> {posicao.posicao}</p>
-                <p><strong>Finalidade:</strong> {posicao.finalidade}</p>
+              <div key={posicao.nome} className="container-texto-gif">
+                <div className="info-texto">
+                  <p><strong>Nome:</strong> {posicao.nome}</p>
+                  <p><strong>Posição:</strong> {posicao.posicao}</p>
+                  <p><strong>Finalidade:</strong> {posicao.finalidade}</p>
+                </div>
 
-                {userData?.is_admin && (
-                  <DeleteTecnicaButton
-                    tecnicaId={posicao.id}
-                    onDelete={onDelete}
+                <div className="gif-container">
+                  <img
+                    className="techniqueGif"
+                    src="https://i.makeagif.com/media/7-09-2025/Lrc9dI.gif"
+                    alt="Técnica animada"
                   />
-                )}
-
+                </div>
               </div>
             ))}
 
@@ -91,7 +102,7 @@ function TecnicasSelector({
             <div className="div_progressao">
               {sequencias.length > 0 ? (
                 sequencias.map((seq) => (
-                  <div key={seq.id} style={{ marginBottom: '8px' }}>
+                  <div key={seq.id} style={{ marginBottom: "8px" }}>
                     <button onClick={() => setPosicaoSelecionada(seq.id)}>
                       {seq.nome} {seq.descricao}
                     </button>
