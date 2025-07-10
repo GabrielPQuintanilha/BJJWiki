@@ -80,11 +80,16 @@ button:focus-visible {
   margin: 20px auto;
 }
 
-.div_posicaoSelecionada > div:first-child {
+.container-texto-gif {
   display: flex;
+  justify-content: space-between; /* separa o texto do gif */
+  align-items: flex-start; /* alinha no topo */
   gap: 20px;
-  align-items: flex-start;
-  position: relative;
+}
+
+.info-texto {
+  flex: 1; /* ocupa o máximo espaço possível */
+  color: white; /* para o texto ficar visível */
 }
 
 .gif-container {
@@ -115,18 +120,6 @@ button:focus-visible {
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 20px;
-}
-
-.container-texto-gif {
-  display: flex;
-  justify-content: space-between; /* separa o texto do gif */
-  align-items: flex-start; /* alinha no topo */
-  gap: 20px;
-}
-
-.info-texto {
-  flex: 1; /* ocupa o máximo espaço possível */
-  color: white; /* para o texto ficar visível */
 }
 
 /* fim do box das tecnicas */
