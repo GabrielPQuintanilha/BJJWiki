@@ -90,7 +90,7 @@ function TecnicasSelector({
                 <div className="gif-container">
                   <img
                     className="techniqueGif"
-                    src="https://i.makeagif.com/media/7-09-2025/Lrc9dI.gif"
+                    src={posicao.video_url}
                     alt="Técnica animada"
                   />
                 </div>

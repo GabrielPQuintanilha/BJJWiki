@@ -1,7 +1,7 @@
 const db = require('../db/client');
 
 exports.findAllTechniques = async () => {
-  const result = await db.query('SELECT id, nome, posicao, dificuldade, finalidade FROM posicoes');
+  const result = await db.query('SELECT id, nome, posicao, dificuldade, finalidade, video_url FROM posicoes');
   return result.rows;
 };
 

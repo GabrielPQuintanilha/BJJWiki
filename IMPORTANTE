@@ -1,36 +1,36 @@
 # PASSOS:
 
-//
-se eu quiser montar um web app com javascript, html, css, node.js, jwt, express, postgresql utilizando react como frontend,
-//
+    //
+    se eu quiser montar um web app com javascript, html, css, node.js, jwt, express, postgresql utilizando react como frontend,
+    //
 
-X Inicialize o projeto Node.js com npm init.
+    X Inicialize o projeto Node.js com npm init.
 
-X Configure o backend com Express e conecte ao PostgreSQL.
+    X Configure o backend com Express e conecte ao PostgreSQL.
 
-X Implemente autenticação com JWT no backend.
+    X Implemente autenticação com JWT no backend.
 
-X Crie rotas públicas e protegidas no backend.
+    X Crie rotas públicas e protegidas no backend.
 
-Configure CORS para permitir requisições do React.
+    Configure CORS para permitir requisições do React.
 
-X Inicialize o frontend com React usando npx create-react-app.
+    X Inicialize o frontend com React usando npx create-react-app.
 
-Implemente páginas de login, registro e dashboard no React.
+    Implemente páginas de login, registro e dashboard no React.
 
-Faça requisições HTTP (ex: com axios) do React para o backend.
+    Faça requisições HTTP (ex: com axios) do React para o backend.
 
-Armazene o token JWT no frontend (ex: localStorage).
+    Armazene o token JWT no frontend (ex: localStorage).
 
-Proteja rotas no React verificando o token JWT.
+    Proteja rotas no React verificando o token JWT.
 
-Estilize o frontend com CSS ou bibliotecas (ex: Tailwind).
+    Estilize o frontend com CSS ou bibliotecas (ex: Tailwind).
 
-Implemente logout limpando o token e redirecionando.
+    Implemente logout limpando o token e redirecionando.
 
-Teste toda a comunicação entre frontend e backend.
+    Teste toda a comunicação entre frontend e backend.
 
-Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netlify).
+    Implemente deploy do backend (ex: Render, Railway) e frontend (ex: Vercel, Netlify).
 
 # Fluxograma:
     graph TD
