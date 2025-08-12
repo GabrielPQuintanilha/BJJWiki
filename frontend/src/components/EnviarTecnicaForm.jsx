@@ -7,16 +7,18 @@ function EnviarTecnicaForm({ onSuccess, onError, userName }) {
   const [posicao, setPosicao] = useState('');
   const [finalidade, setFinalidade] = useState('');
   const [loading, setLoading] = useState(false);
+  const [video_url, setVideo_URL] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await enviarTecnica({ nome, posicao, finalidade, userName });
+      await enviarTecnica({ nome, posicao, finalidade, userName, video_url });
       setNome('');
       setPosicao('');
       setFinalidade('');
       setLoading(false);
+      setVideo_URL('');
       if (onSuccess) onSuccess('Técnica enviada com sucesso!');
     } catch (err) {
       setLoading(false);
@@ -50,6 +52,15 @@ function EnviarTecnicaForm({ onSuccess, onError, userName }) {
           type="text"
           value={finalidade}
           onChange={(e) => setFinalidade(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Video URL: </label>
+        <input
+          type="text"
+          value={video_url}
+          onChange={(e) => setVideo_URL(e.target.value)}
           required
         />
       </div>

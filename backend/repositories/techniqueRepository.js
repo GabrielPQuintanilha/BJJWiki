@@ -22,7 +22,7 @@ exports.inserir = async ({
   posicao,
   dificuldade,
   finalidade,
-  video_url = null,
+  video_url,
   nome_usuario,
   //faixa_recomendada = null,
   //pontuacao = null,

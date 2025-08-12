@@ -22,7 +22,7 @@ exports.aprovarTecnica = async (id) => {
     dificuldade: tecnica.dificuldade,
     finalidade: tecnica.finalidade,
     nome_usuario: tecnica.nome_usuario,
-    video_url: tecnica.video_url || null, 
+    video_url: tecnica.video_url, 
     //faixa_recomendada: tecnica.faixa_recomendada || null,
     //pontuacao: tecnica.pontuacao || null,
     //conexoes: tecnica.conexoes || null,

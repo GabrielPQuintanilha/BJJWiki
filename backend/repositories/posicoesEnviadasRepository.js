@@ -1,12 +1,12 @@
 const db = require('../db/client');
 
-exports.inserir = async ({ nome, finalidade, posicao, nome_usuario }) => {
+exports.inserir = async ({ nome, finalidade, posicao, nome_usuario, video_url }) => {
   const query = `
-    INSERT INTO posicoes_enviadas (nome, finalidade, posicao, nome_usuario)
-    VALUES ($1, $2, $3, $4)
+    INSERT INTO posicoes_enviadas (nome, finalidade, posicao, nome_usuario, video_url)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *;
   `;
-  const result = await db.query(query, [nome, finalidade, posicao, nome_usuario]);
+  const result = await db.query(query, [nome, finalidade, posicao, nome_usuario, video_url]);
   return result.rows[0];
 };
 
